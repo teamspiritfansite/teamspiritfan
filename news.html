@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- SEO: Заголовок страницы для поисковиков -->
+  <title>Новости Team Spirit — Последние обновления и события</title>
+  <!-- SEO: Описание для выдачи поисковых систем -->
+  <meta name="description" content="Последние новости команды Team Spirit. Обновления о составе, турнирах, достижениях в Dota 2, CS2, Mobile Legends и других дисциплинах." />
+  <!-- SEO: Ключевые слова -->
+  <meta name="keywords" content="Team Spirit, новости, обновления, турниры, состав команды, Dota 2, CS2, Mobile Legends, esports" />
+  <!-- SEO: Автор контента -->
+  <meta name="author" content="Team Spirit Fan Community" />
+  <!-- SEO: Разрешаем поисковикам индексировать страницу -->
+  <meta name="robots" content="index, follow" />
+  <!-- SEO: Open Graph теги для социальных сетей и предпросмотра ссылок -->
+  <meta property="og:title" content="Новости Team Spirit — Последние обновления" />
+  <meta property="og:description" content="Новости и события команды Team Spirit. Турниры, состав, достижения." />
+  <meta property="og:image" content="images/logo-team-spirit.png" />
+  <meta property="og:url" content="https://teamspiritfan.com/news.html" />
+  <meta property="og:type" content="website" />
+  <!-- SEO: Каноническая ссылка -->
+  <link rel="canonical" href="https://teamspiritfan.com/news.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Small override to center the index content */
+    .news-index{max-width:1000px;margin:60px auto;padding:20px;display:flex;flex-direction:column;gap:20px}
+    /* SEO: Основной заголовок новостей */
+    .news-index h1{text-align:center;margin-bottom:8px}
+    .news-index .intro{color:var(--muted);text-align:center;margin-bottom:18px}
+    .news-index-card{display:block;background:transparent;border-radius:0;padding:0; text-decoration:none;color:inherit;box-shadow:none;border:none;transition:transform .18s;overflow:visible;display:grid;grid-template-rows:auto 1fr}
+    .news-index-card:hover{transform:translateY(-3px)}
+    /* Первая новость - большая */
+    .news-index-card:first-of-type{grid-column:1/-1;height:auto;margin:0 auto 30px;position:static;display:flex;flex-direction:column;background:transparent;border:none;box-shadow:none;padding:0;overflow:visible;max-width:700px;width:100%}
+    .news-index-card:first-of-type .news-index-thumb{height:auto !important;width:100% !important;max-height:300px !important;max-width:100% !important;aspect-ratio:16/9;order:1;flex-shrink:0;border-radius:0}
+    .news-index-card:first-of-type .news-index-meta{position:static;background:transparent;width:100%;order:2;padding:20px 0;display:block}
+    .news-index-card:first-of-type .news-index-title{font-size:28px;color:#fff;margin:0 0 12px 0;padding:0}
+    .news-index-card:first-of-type .news-index-excerpt{color:rgba(255,255,255,0.9);font-size:16px;margin:0;padding:0;line-height:1.5;margin-bottom:12px}
+    .news-index-card:first-of-type time{display:block;margin:0;padding:0;font-size:14px;color:var(--muted)}
+    /* Остальные новости - поменьше */
+    .news-index-card:not(:first-of-type){display:grid;grid-template-columns:160px 1fr;grid-template-rows:auto auto auto;gap:16px 14px;background:transparent;padding:0;border:none;box-shadow:none;border-radius:0;max-width:570px;margin:0 auto;width:100%;align-items:start}
+    .news-index-card:not(:first-of-type) .news-index-meta{display:contents}
+    .news-index-card:not(:first-of-type) .news-index-thumb{width:160px;height:160px;flex-shrink:0;max-height:none;border-radius:0;grid-row:1/-1;grid-column:1}
+    .news-index-card:not(:first-of-type) .news-index-title{font-size:17px;margin:0;grid-column:2;grid-row:1;font-weight:700;align-self:start}
+    .news-index-card:not(:first-of-type) .news-index-excerpt{margin:0;font-size:14px;margin-bottom:0;grid-column:2;grid-row:2;color:rgba(255,255,255,0.85);line-height:1.4;align-self:start}
+    .news-index-card:not(:first-of-type) time{grid-column:2;grid-row:3;font-size:13px;color:var(--muted);align-self:start}
+    .news-archive{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+    .news-archive .news-index-card:first-of-type{grid-column:1/-1}
+    .news-index-thumb{height:auto;background-size:contain;background-position:center center;border-radius:0;margin-bottom:0;width:100%;background-repeat:no-repeat}
+    .news-index-meta{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:0}
+    .news-index-title{font-size:18px;font-weight:800;margin:0}
+    .news-index-excerpt{color:rgba(255,255,255,0.85);margin-top:8px;line-height:1.5;padding:0}
+    @media(max-width:680px){.news-index{padding:12px}.news-archive{grid-template-columns:1fr}.news-index-card:first-of-type .news-index-title{font-size:22px}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo"><img src="images/logo-team-spirit.png" alt="Team Spirit logo" class="site-logo" /></div>
+      <nav class="main-nav">
+        <a href="index.html">Главная</a>
+        <a href="#news">Новости</a>
+        <a href="index.html#teams">Команды</a>
+        <a href="index.html#history">История</a>
+      </nav>
+      <button class="btn support" id="support-btn">ПОДДЕРЖАТЬ</button>
+      <button class="nav-toggle" aria-label="toggle menu">☰</button>
+    </div>
+  </header>
+
+  <main class="news-index">
+    <a href="index.html" class="btn ghost">← Назад на сайт</a>
+    <h1>Новости</h1>
+    <p class="intro">Последние новости вверху — нажмите карточку, чтобы открыть подробную страницу.</p>
+    <!-- Editor helpers removed: user requested no inline preview/snippets -->
+
+  
+    <!-- Archive (reverse chronological) -->
+    <section class="news-archive" style="display:flex;flex-direction:column;gap:16px">
+      <!-- 2026 (newest first) -->
+      <a class="news-index-card" href="news/news-2026-06-05-jun-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2026-06.png')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">zaur egoist - новый игрок Team Spirit</h3><time>18 Февраля 2026</time></div>  
+      </a>
+
+      <a class="news-index-card" href="news/news-2026-05-05-may-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2026-05.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Silent отправлен в инактив</h3><time>13  Января 2026</time></div>
+        <p class="news-index-excerpt">Сообщаем, что Айрат Silent Газиев с сегодняшнего дня переводится в инактив.</p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2026-04-05-apr-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2026-04.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Изменения в CS-ростере Team Spirit</h3><time>18 Деабря 2025</time></div>
+        <p class="news-index-excerpt">По результатам StarLadder Budapest Major и после анализа прошедшего сезона мы приняли решение внести изменения в состав основного ростера по CS. </p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2026-03-05-mar-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2026-03.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Team Spirit исполнилось 10 лет</h3><time>06 Декабря 2025</time></div>
+        <p class="news-index-excerpt">Сегодня Team Spirit исполняется 10 лет. За это время мы прошли долгий путь от локального состава по Dota 2 до международной мультигейминговой организации, которая добивается самых больших результатов на высочайшем уровне</p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2026-02-05-feb-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2026-02.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Приветствуем Panto</h3><time>09 Октября 2025</time></div>
+        <p class="news-index-excerpt">
+Никита Panto Балаганин становится новым саппортом пятой позиции Dota 2-ростера Team Spirit.</p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2026-01-05-jan-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2026-01.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Team Spirit прощается с PUBG Mobile</h3><time>24 Сентрября 2025</time></div>
+        <p class="news-index-excerpt">Сегодня мы прощаемся с ростером по PUBG Mobile и объявляем о выходе нашей организации из дисциплины.</p>
+      </a>
+
+      <!-- 2025 -->
+      <a class="news-index-card" href="news/news-2025-12-05-dec-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2025-12.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Oneshot присоединяется к Team Spirit</h3><time>05 Декабря 2025</time></div>
+        <p class="news-index-excerpt">Рады объявить, что Александр Oneshot Шарков присоединяется к нашему MLBB-ростеру и станет новым джанглером нашей организации.</p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2025-11-05-nov-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2025-11.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Встречайте tN1R</h3><time>08 Сентября 2025</time></div>
+        <p class="news-index-excerpt">Андрей "tN1R" Татаринович становится новым рифлером Team Spirit.</p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2025-10-05-oct-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2025-10.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Мы - чемпионы IEM Cologne 2025</h3><time>05 Августа 2025</time></div>
+        <p class="news-index-excerpt">СS-ростер Team Spirit одержал победу на турнире IEM Cologne 2025.</p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2025-09-05-sep-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2025-09.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Мы - чемпионы EWC 2025</h3><time>19 Июля 2025</time></div>
+        <p class="news-index-excerpt">Наш ростер по DOTA 2 стал чемпионом EWC 2025, проходящего в Эр-Рияде.</p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2025-08-05-aug-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2025-08.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Приветствуем Zweih</h3><time>07 Июля 2025</time></div>
+        <p class="news-index-excerpt">Иван "zweih" Гогин присоединяется к составу команды Team Spirit по CS.</p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2025-07-05-jul-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2025-07.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Team Spirit прощается с magixx</h3><time>07 Июля 2025</time></div>
+        <p class="news-index-excerpt">Сообщаем, что с сегодняшнего дня Борис magixx Воробьев переводится в запас нашего CS ростера.</p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2025-06-05-jun-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2025-06.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Team Spirit и Okko объявили о партнёрстве</h3><time>12 Июня 2025</time></div>
+        <p class="news-index-excerpt">Okko объявляет о партнёрстве с Team Spirit, одной из самых популярных и титулованных киберспортивных команд.</p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2025-05-05-may-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2025-05.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Мы - чемпионы PGL Astana 2025</h3><time>19 Мая 2025</time></div>
+        <p class="news-index-excerpt">СS-ростер Team Spirit одержал победу на турнире в Казахстане.</p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2024-12-05-dec-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2024-12.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Team Spirit X BLACKLYTE</h3><time>14 Апреля 2025</time></div>
+        <p class="news-index-excerpt">Рады объявить о начале сотрудничества Team Spirit и BLACKLYTE.</p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2024-11-05-nov-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2024-11.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Welcome Duhless и Konevlad</h3><time>09 Апреля 2025</time></div>
+        <p class="news-index-excerpt">Сегодня Team Spirit начинает путь в новой для себя дисциплине.</p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2024-10-05-oct-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2024-10.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">FAQ награждение GACHA MAJOR</h3><time>07 Февраля 2025</time></div>
+        <p class="news-index-excerpt">Мы подготовили для вас документ, в котором содержится самая важная информация о процессе награждения победителей акции: «Shanghai Major Gift Cards by Team Spirit».</p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2024-09-05-sep-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2024-09.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Измения в ростере Dota 2</h3><time>05 Января 2025</time></div>
+        <p class="news-index-excerpt">Team Spirit рада сообщить, что после отпуска в наш ростер по Dota 2 возвращаются Магомед Collapse Халилов и Айрат Silent Газиев.</p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2024-08-05-aug-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2024-08.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Team Spirit - чемпионы Perfect World Shanghai Major 2024</h3><time>15 Декабря 2024</time></div>
+        <p class="news-index-excerpt">Наш CS-ростер стал чемпионом последнего турнира года! Team Spirit впервые становится чемпионом мажора!</p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2024-07-05-jul-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2024-07.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Team Spirit x BOXR</h3><time>12 Ноября 2024</time></div>
+        <p class="news-index-excerpt">Team Spirit представляет новую streatwear коллекцию в коллаборации c BOXR.</p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2024-06-05-jun-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2024-06.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Team Spirit и Zowie объявляют о партнёрстве</h3><time>30 Октября 2024</time></div>
+        <p class="news-index-excerpt">Нашим новым партнером стала компания Zowie.</p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2024-05-05-may-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2024-05.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Team Spirit представляет Dota 2 ростер на сезон 2024-2025</h3><time>26 Сентября 2024</time></div>
+        <p class="news-index-excerpt">Начинается новый сезон, и мы готовы представить обновлённый ростер на 2024-2025 год.</p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2024-04-05-apr-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2024-04.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Matic присоединяется к Team Spirit</h3><time>16 Августа 2024</time></div>
+        <p class="news-index-excerpt">К нашему ростеру по PUBG mobile присоединяется Виталий Matic Шульга.</p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2024-02-05-feb-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2024-02.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Team Spirit прощается с Marl и Lil</h3><time>10 Июля 2024</time></div>
+        <p class="news-index-excerpt">На фоне выступления нашего ростера по MLBB на EWC в Эр-Рияде и отталкиваясь от множества внутренних факторов, организацией было принято решение о перестановках в коллективе. </p>
+      </a>
+
+      <a class="news-index-card" href="news/news-2024-01-05-jan-update.html">
+        <div class="news-index-thumb" style="background-image:url('images/news-2024-01.jpg')"></div>
+        <div class="news-index-meta"><h3 class="news-index-title">Team Spirit - чемпионы BLAST PREMIER SPRING FINALS 2024</h3><time>16 Июня 2024</time></div>
+        <p class="news-index-excerpt">Наш CS2-ростер победил в гранд-финале BLAST PREMIER SPRING FINALS 2024.</p>
+      </a>
+    </section>
+  </main>
+  <script src="script.js"></script>
+
+</body>
+</html>
