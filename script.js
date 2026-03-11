@@ -578,7 +578,7 @@ document.addEventListener('DOMContentLoaded', function(){
           {date:'2026-02-28', teamA:'Team Spirit', teamB:'Team Liquid', result:'1:2'},
           {date:'2026-02-20', teamA:'Team Spirit', teamB:'G2', result:'2:0'}
         ],
-        next: {teamA:'Team Spirit', teamB:'Nigma Galaxy', datetime:'2026-03-20T18:00:00Z', link:'#', tournament:'DreamLeague Season 28', teamALogo:'images/logo-team-spirit.png', teamBLogo:'images/logo-nigma.png'}
+  next: {teamA:'Team Spirit', teamB:'Nigma Galaxy', datetime:'2026-03-20T18:00:00Z', link:'#', tournament:'DreamLeague Season 28', teamALogo:'images/logo-team-spirit.png', teamBLogo:'images/logo-opponent.jpg'}
       },
       cs2: {
         last: [
@@ -586,7 +586,7 @@ document.addEventListener('DOMContentLoaded', function(){
           {date:'2026-02-25', teamA:'Team Spirit', teamB:'Natus Vincere', result:'2:0'},
           {date:'2026-02-14', teamA:'Team Spirit', teamB:'Astralis', result:'2:1'}
         ],
-        next: {teamA:'Team Spirit', teamB:'Heroic', datetime:'2026-03-18T20:30:00Z', link:'#', tournament:'BLAST Premier', teamALogo:'images/logo-team-spirit.png', teamBLogo:'images/logo-heroic.png'}
+  next: {teamA:'Team Spirit', teamB:'Heroic', datetime:'2026-03-18T20:30:00Z', link:'#', tournament:'BLAST Premier', teamALogo:'images/logo-team-spirit.png', teamBLogo:'images/logo-opponent.jpg'}
       },
       mlbb: {
         last: [
@@ -594,7 +594,7 @@ document.addEventListener('DOMContentLoaded', function(){
           {date:'2026-02-19', teamA:'Team Spirit', teamB:'EVOS', result:'2:1'},
           {date:'2026-01-29', teamA:'Team Spirit', teamB:'ONIC', result:'1:2'}
         ],
-        next: {teamA:'Team Spirit', teamB:'Bigetron', datetime:'2026-03-22T16:00:00Z', link:'#', tournament:'MLBB Invitational', teamALogo:'images/logo-team-spirit.png', teamBLogo:'images/logo-bigetron.png'}
+  next: {teamA:'Team Spirit', teamB:'Bigetron', datetime:'2026-03-22T16:00:00Z', link:'#', tournament:'MLBB Invitational', teamALogo:'images/logo-team-spirit.png', teamBLogo:'images/logo-opponent.jpg'}
       },
       csacademy: {
         last: [
@@ -602,7 +602,7 @@ document.addEventListener('DOMContentLoaded', function(){
           {date:'2026-02-10', teamA:'Team Spirit', teamB:'CCT Europe #15', result:'2:0'},
           {date:'2026-01-18', teamA:'Team Spirit', teamB:'ESL Challenger Qualifier', result:'1:2'}
         ],
-        next: {teamA:'Team Spirit', teamB:'Rising Stars', datetime:'2026-03-21T17:00:00Z', link:'#', tournament:'CS Academy Cup', teamALogo:'images/logo-team-spirit.png', teamBLogo:'images/logo-rising.png'}
+  next: {teamA:'Team Spirit', teamB:'Rising Stars', datetime:'2026-03-21T17:00:00Z', link:'#', tournament:'CS Academy Cup', teamALogo:'images/logo-team-spirit.png', teamBLogo:'images/logo-opponent.jpg'}
       }
     };
 
