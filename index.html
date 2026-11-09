@@ -30,6 +30,7 @@
 					<a href="#teams">Команды</a>
 					<a href="#tours">Турниры</a>
 					<a href="#history">История</a>
+					<a href="#feedback">Отзывы</a>
 				</nav>
 				<button class="btn support" id="support-btn">ПОДДЕРЖАТЬ</button>
 				<button class="nav-toggle" aria-label="toggle menu">☰</button>
@@ -556,6 +557,60 @@
 				</div>
 			</section>
 		</div>
+		</section>
+
+		<!-- FAN FEEDBACK -->
+		<section id="feedback" class="section feedback-section">
+			<div class="container">
+				<div class="feedback-heading">
+					<div>
+						<span class="feedback-kicker">FAN COMMUNITY</span>
+						<h2 class="section-title">ГОЛОС <span class="accent">ФАНАТОВ</span></h2>
+						<p class="feedback-intro">Поделитесь впечатлениями о Team Spirit. Сообщения сохраняются в локальной базе данных SQLite.</p>
+					</div>
+					<div class="feedback-db-badge" aria-label="Данные сохраняются в SQLite">
+						<span class="feedback-db-dot" aria-hidden="true"></span>
+						SQLite подключена
+					</div>
+				</div>
+
+				<div class="feedback-layout">
+					<form id="feedback-form" class="feedback-form" novalidate>
+						<h3>Оставить отзыв</h3>
+						<p>Ваше сообщение появится в ленте после сохранения.</p>
+
+						<label class="feedback-field" for="feedback-name">
+							<span>Ваше имя</span>
+							<input id="feedback-name" name="name" type="text" maxlength="60" required autocomplete="name" placeholder="Например, Vladimir">
+						</label>
+
+						<label class="feedback-field" for="feedback-message">
+							<span>Сообщение</span>
+							<textarea id="feedback-message" name="message" maxlength="500" required rows="5" placeholder="Напишите, за что вы болеете за Team Spirit"></textarea>
+						</label>
+
+						<div class="feedback-form-footer">
+							<span id="feedback-counter" class="feedback-counter">0 / 500</span>
+							<button id="feedback-submit" class="btn primary feedback-submit" type="submit">ОТПРАВИТЬ ОТЗЫВ</button>
+						</div>
+						<p id="feedback-status" class="feedback-status" role="status" aria-live="polite"></p>
+					</form>
+
+					<div class="feedback-feed" aria-labelledby="feedback-feed-title">
+						<div class="feedback-feed-header">
+							<div>
+								<span class="feedback-feed-label">Последние сообщения</span>
+								<h3 id="feedback-feed-title">Отзывы сообщества</h3>
+							</div>
+							<button id="feedback-refresh" class="feedback-refresh" type="button" aria-label="Обновить отзывы">↻</button>
+						</div>
+						<div id="feedback-list" class="feedback-list" aria-live="polite">
+							<div class="feedback-loading">Загружаем отзывы…</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
             
 
 		</main>
@@ -590,6 +645,7 @@
 						<li><a href="#teams">Команды</a></li>
 						<li><a href="#tours">Турниры</a></li>
 						<li><a href="#history">История</a></li>
+						<li><a href="#feedback">Отзывы</a></li>
 					</ul>
 				</div>
 				<div class="col footer-col">
