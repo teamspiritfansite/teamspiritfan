@@ -1119,4 +1119,147 @@ document.addEventListener('DOMContentLoaded', function(){
     renderQuestion();
   })();
 
+  // FAN FEEDBACK: SQLite API rendered on the homepage
+  (function feedbackHandler(){
+    var form = document.getElementById('feedback-form');
+    var list = document.getElementById('feedback-list');
+    var status = document.getElementById('feedback-status');
+    var submit = document.getElementById('feedback-submit');
+    var refresh = document.getElementById('feedback-refresh');
+    var message = document.getElementById('feedback-message');
+    var counter = document.getElementById('feedback-counter');
+
+    if(!form || !list) return;
+
+    function setStatus(text, kind){
+      if(!status) return;
+      status.textContent = text || '';
+      status.className = 'feedback-status' + (kind ? ' ' + kind : '');
+    }
+
+    function formatDate(value){
+      if(!value) return '';
+      var parsed = new Date(String(value).replace(' ', 'T') + 'Z');
+      if(Number.isNaN(parsed.getTime())) return value;
+      return parsed.toLocaleString('ru-RU', {
+        day: '2-digit', month: '2-digit', year: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+      });
+    }
+
+    function createFeedbackCard(item){
+      var card = document.createElement('article');
+      card.className = 'feedback-card';
+
+      var top = document.createElement('div');
+      top.className = 'feedback-card-top';
+
+      var author = document.createElement('div');
+      author.className = 'feedback-author';
+
+      var avatar = document.createElement('span');
+      avatar.className = 'feedback-avatar';
+      avatar.textContent = (item.name || '?').trim().charAt(0) || '?';
+
+      var name = document.createElement('span');
+      name.textContent = item.name || 'Фанат Team Spirit';
+
+      var date = document.createElement('time');
+      date.className = 'feedback-date';
+      date.textContent = formatDate(item.created_at);
+
+      var text = document.createElement('p');
+      text.className = 'feedback-message';
+      text.textContent = item.message || '';
+
+      author.appendChild(avatar);
+      author.appendChild(name);
+      top.appendChild(author);
+      top.appendChild(date);
+      card.appendChild(top);
+      card.appendChild(text);
+      return card;
+    }
+
+    function showUnavailable(){
+      list.innerHTML = '';
+      var note = document.createElement('div');
+      note.className = 'feedback-unavailable';
+      var title = document.createElement('strong');
+      title.textContent = 'Сервер отзывов недоступен';
+      var text = document.createElement('span');
+      text.textContent = 'Запустите сайт командой python server.py и откройте http://127.0.0.1:8000';
+      note.appendChild(title);
+      note.appendChild(text);
+      list.appendChild(note);
+    }
+
+    function loadFeedback(){
+      list.innerHTML = '<div class="feedback-loading">Загружаем отзывы…</div>';
+      fetch('/api/feedback', { headers: { 'Accept': 'application/json' } })
+        .then(function(response){
+          if(!response.ok) throw new Error('Feedback API is unavailable');
+          return response.json();
+        })
+        .then(function(items){
+          list.innerHTML = '';
+          if(!Array.isArray(items) || items.length === 0){
+            list.innerHTML = '<div class="feedback-empty">Пока нет отзывов. Станьте первым!</div>';
+            return;
+          }
+          items.forEach(function(item){ list.appendChild(createFeedbackCard(item)); });
+        })
+        .catch(function(){ showUnavailable(); });
+    }
+
+    if(message && counter){
+      function updateCounter(){ counter.textContent = message.value.length + ' / 500'; }
+      message.addEventListener('input', updateCounter);
+      updateCounter();
+    }
+
+    if(refresh) refresh.addEventListener('click', loadFeedback);
+
+    form.addEventListener('submit', function(event){
+      event.preventDefault();
+      var nameInput = document.getElementById('feedback-name');
+      var nameValue = nameInput ? nameInput.value.trim() : '';
+      var messageValue = message ? message.value.trim() : '';
+
+      if(!nameValue || !messageValue){
+        setStatus('Заполните имя и сообщение.', 'error');
+        return;
+      }
+
+      if(submit){ submit.disabled = true; submit.textContent = 'СОХРАНЯЕМ…'; }
+      setStatus('Сохраняем отзыв…', '');
+
+      fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name: nameValue, message: messageValue })
+      })
+        .then(function(response){
+          return response.json().then(function(payload){
+            if(!response.ok) throw new Error(payload.error || 'Не удалось сохранить отзыв.');
+            return payload;
+          });
+        })
+        .then(function(){
+          form.reset();
+          if(counter) counter.textContent = '0 / 500';
+          setStatus('Отзыв сохранён в базе данных.', 'success');
+          loadFeedback();
+        })
+        .catch(function(error){
+          setStatus(error.message || 'Сервер недоступен. Запустите python server.py', 'error');
+        })
+        .finally(function(){
+          if(submit){ submit.disabled = false; submit.textContent = 'ОТПРАВИТЬ ОТЗЫВ'; }
+        });
+    });
+
+    loadFeedback();
+  })();
+
 });
